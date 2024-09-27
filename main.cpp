@@ -1,79 +1,53 @@
 #include <iostream>
 #include <vector>
-#include <cstdlib> // Para std::stoi
+#include <cstdlib> 
+#include <algorithm>
 
 using namespace std;
-
+struct Job{
+    int startTime;
+    int endTime;
+    int profit;
+} ;
 //NAO MEXER NO NOME DO METODO
 int jobScheduling(vector<int>& startTime, vector<int>& endTime, vector<int>& profit) {
-    // mplementar logica aqui
-    return 0;
+    vector<Job> jobs;
+    int jobs_n = startTime.size();
+    
+
+
+    if (jobs_n < 1 || jobs_n > 5e4 ){
+        cout << "Error: the number of jobs must be between 1 and 5e4" << endl;
+        return 0;
+    }   // test if the n of jobs is between 1 and 50k
+
+    if (jobs_n != endTime.size() || endTime.size() != profit.size()){
+        cout << "Error: Vectors must have the same size" << endl;
+        return 0;
+    }   // test if the vectors have the same size
+       
+    for (int i = 0; i < jobs_n; i++) {
+        Job j = {startTime[i], endTime[i], profit[i]};
+        if (j.startTime >= j.endTime) {
+            count <<
+        }
+            jobs.push_back(j);
+    }   // create jobs and push them into jobs vector 
+
 }
-
-int main(int argc, char* argv[]) {
-    if (argc < 4) {
-        cerr << "Erro: número insuficiente de argumentos." << endl;
-        cerr << "Uso: " << argv[0] << " startTimes endTimes profits" << endl;
-        return 1;
-    }
-
-    int totalArgs = argc - 1; // desconsidera o primeiro arg que é o nome do programa
-    int numElementsPerVector = totalArgs / 3; // número de elementos por vetor, como cada vetor tem tamanho Igual, e são 3 vetores
     
+int main(){
+    vector<int> startTime = {1,2,3,4,6};
+    vector<int> endTime = {3,5,10,6,9};
+    vector<int> profit = {20,20,100,70,60};
+    vector<int> size_er = {3, 4, 10, 6};    //test size
+    vector<int> zero_er;
 
-    if (totalArgs % 3 != 0) { // verifica se o total de argumentos é múltiplo de 3 para poder preencher cada vetor
-        cerr << "Erro: número inválido de argumentos." << endl;
-        cerr << "Uso: " << argv[0] << " startTimes endTimes profits" << endl;
-        return 1;
-    }
+    int expected = 150;
+
+
+
     
-    if (numElementsPerVector < 1 || numElementsPerVector > 50000) {
-        cerr << "Erro: número de elementos por vetor deve estar entre 1 e 5 * 10^4." << endl;
-        return 1;
-    }
-
-    vector<int> startTime(numElementsPerVector); //vetor que vai ter os tempos iniciais 
-    vector<int> endTime(numElementsPerVector); //vetor que vai ter os tempos finais
-    vector<int> profit(numElementsPerVector); //vetor com cada valor de profit
-
-    // preenche startTime
-    for (int i = 0; i < numElementsPerVector; ++i) {
-        startTime[i] = stoi(argv[i + 1]);
-    }
-
-    // preenche endTime
-    for (int i = 0; i < numElementsPerVector; ++i) {
-        endTime[i] = stoi(argv[numElementsPerVector + i + 1]);
-    }
-
-    // preenche profit
-    for (int i = 0; i < numElementsPerVector; ++i) {
-        profit[i] = stoi(argv[2 * numElementsPerVector + i + 1]);
-    }
-
-    // Imprimir vetores(ignorar, foi para testar se a entrada deu certo ou nao)
-    cout << "startTime: ";
-    for (const int& time : startTime) {
-        cout << time << " ";
-    }
-    cout << endl;
-
-    cout << "endTime: ";
-    for (const int& time : endTime) {
-        cout << time << " ";
-    }
-    cout << endl;
-
-    cout << "profit: ";
-    for (const int& p : profit) {
-        cout << p << " ";
-    }
-    cout << endl;
-
-    int maxProfit = jobScheduling(startTime, endTime, profit);
-    
-    //impressão do resultado do maxprofit no final do programa
-    cout << maxProfit << endl;
 
     return 0;
 }
